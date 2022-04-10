@@ -114,7 +114,7 @@ elif 'I want to watch movies' in query:
 
     
 
-    os.startfile(os.path.join(dir,list[]))
+# os.startfile(os.path.join(dir,list[]))
 
 # elif 'time' in query:
 #         strtime= datetime.datetime.now().strftime("%H:%M:%S")
