@@ -1,4 +1,5 @@
 from ast import While
+
 import pyttsx3
 
 import speech_recognition as sr
@@ -18,7 +19,7 @@ import smtplib
 import googletrans
 
 
-engine =pyttsx3.init('sapi5')
+engine =pyttsx3.init()
 voices =engine.getProperty('voices')
 engine.setProperty('voice',voices[-1].id)
 
@@ -40,8 +41,7 @@ def wishme(): #will greet you according to time of the day
     speak("i am friday, how may i help you?")         
 
 def listen():#it takes user input as audio of microphone and returns output as string variable 'query'
-
-
+    
     k = sr.Recognizer()
     with sr.Microphone() as source:
         print("Listening....")
@@ -52,7 +52,7 @@ def listen():#it takes user input as audio of microphone and returns output as s
         print("Recognizing......")
         speak("Recognizing......")
         query=k.recognize_google(audio, language='mar-in')    
-        print(f"user said: {query}\n")
+        print("user said: ",{query},"\n")
 
     except Exception as e:
         print("Say that again please....")
@@ -70,77 +70,86 @@ def sendEmail(to,content):
 
 if __name__ == "__main__":
   # speak("Hello Boss")
-   wishme()
-while query!="stop":#In below code say somthing what do you want to open or get activity from friday and say stop to end process
-    query=str(input( "enter query"))#to manualy enter query
-    query =listen().lower()#to enter query with speach
-    if 'wikipedia' in query:
-            try:
-                speak('searching Wikipedia....')
-                query= query.replace("wikipedia","")
-                results = wikipedia.summary(query,sentences=1)
-                speak("Acording To Wikipedia")
-                speak(results)
-            except Exception as e:
-                print(e)
-                speak("sorry boss ,i am not able get any appropriate result from wikipedia")
-    #Commands on os modules
-    elif 'play video' in query:
-            music_dir= 'C:\\Users\\Amol\\Desktop'
-            video = os.listdir(music_dir)
-            print(video)
-            os.startfile(os.path.join(music_dir,video[22]))
-    elif 'stop music' in query:
-            music_dir= 'C:\\Users\\Amol\\Desktop'
-            songs = os.listdir(music_dir)
-            print(songs)
-            os.close(os.path.join(music_dir,songs[0,])) 
-    elif 'moonknight one' in query:
-        dir='C:\\Users\\Amol\\Desktop\\moonknight'
-        list=os.listdir(dir)
-        print(list)
-        os.startfile(os.path.join(dir,list[0]))
-    elif 'moonknight two' in query:
-        dir='C:\\Users\\Amol\\Desktop\\moonknight'
-        list=os.listdir(dir)
-        print(list)
-        os.startfile(os.path.join(dir,list[1]))
-    elif 'open file manager' in query:
-            v='C:\\'
-            os.startfile(v)      
-    elif 'I want to watch movies' in query:
-        dir='C:\\Users\\Amol\\Desktop\\movies'
-        list=os.listdir(dir)
-        print(list)
+    wishme()
+    # query=str(input( "enter query"))#to manualy enter query
+    while True:#In below code say somthing what do you want to open or get activity from friday and say stop to end process
+        query=str(input( "enter query: "))#to manualy enter query
+        # query =listen().lower()#to enter query with speach
+        if 'wikipedia' in query:
+                try:
+                    speak('searching Wikipedia....')
+                    query= query.replace("wikipedia","")
+                    results = wikipedia.summary(query,sentences=1)
+                    speak("Acording To Wikipedia")
+                    speak(results)
+                except Exception as e:
+                    print(e)
+                    speak("sorry boss ,i am not able get any appropriate result from wikipedia")
+        #Commands on os modules
+        elif 'play video' in query:
+                music_dir= 'C:\\Users\\Amol\\Desktop'
+                video = os.listdir(music_dir)
+                print(video)
+                os.startfile(os.path.join(music_dir,video[22]))
+        elif 'stop music' in query:
+                music_dir= 'C:\\Users\\Amol\\Desktop'
+                songs = os.listdir(music_dir)
+                print(songs)
+                os.close(os.path.join(music_dir,songs[0,])) 
+        elif 'moonknight one' in query:
+            dir='C:\\Users\\Amol\\Desktop\\moonknight'
+            list=os.listdir(dir)
+            print(list)
+            os.startfile(os.path.join(dir,list[0]))
+        elif 'moonknight two' in query:
+            dir='C:\\Users\\Amol\\Desktop\\moonknight'
+            list=os.listdir(dir)
+            print(list)
+            os.startfile(os.path.join(dir,list[1]))
+        elif 'open' in query:
+                v='/home/q/Desktop/'
+                list=os.listdir(v)
+                os.startfile(os.path.join(v,list[1]))     
+        elif 'I want to watch movies' in query:
+            dir='C:\\Users\\Amol\\Desktop\\movies'
+            list=os.listdir(dir)
+            print(list)
 
+            
+
+        # os.startfile(os.path.join(dir,list[]))
+
+        elif 'time' in query:
+                strtime= datetime.datetime.now().strftime("%H:%M:%S")
+                print(strtime)
+                speak(f"The time is {strtime}")
+                print(f"The time is {strtime}")
+
+        # elif 'email' in query:
+        #         try:
+        #             speak("what shoould I say?")
+        #             content= listen()
+        #             to= "amolbran0@gmail.com"
+        #             sendEmail(to,content)
+        #             speak("Email successfully send!")
+        #         except Exception as e:
+        #             print(e)
+        #             speak("sorry boss, i am not able to send email")
+        elif 'youtube' in query:
+                   webbrowser.open('https://youtu.be/iik25wqIuFo')
+
+        # elif 'file' in query:
+        #         v='C:\\'
+        #         os.startfile(v)      
+
+        elif'who are you' in query:
+                speak('I am veronica, i am A.i system of created by self,with love of you, i m a ho,such a disspointment to this dammed world') 
         
 
-    # os.startfile(os.path.join(dir,list[]))
-
-    # elif 'time' in query:
-    #         strtime= datetime.datetime.now().strftime("%H:%M:%S")
-    #         print(strtime)
-    #         speak(f"The time is {strtime}")
-
-    # elif 'email' in query:
-    #         try:
-    #             speak("what shoould I say?")
-    #             content= listen()
-    #             to= "amolbran0@gmail.com"
-    #             sendEmail(to,content)
-    #             speak("Email successfully send!")
-    #         except Exception as e:
-    #             print(e)
-    #             speak("sorry boss, i am not able to send email")
-    # elif 'open youtube' in query:
-    #            webbrowser.open('https://youtu.be/iik25wqIuFo')
-
-    # elif 'file' in query:
-    #         v='C:\\'
-    #         os.startfile(v)      
-
-    elif'who are you' in query:
-            speak('I am veronica, i am A.i system of created by self,with love of you, i m a ho,such a disspointment to this dammed world')
+        elif 'quit' in query:
+            speak('have a great day')
+            # print('have a great day')
+            break;
                 
                           
    
