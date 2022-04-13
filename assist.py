@@ -1,5 +1,7 @@
 from ast import While
 
+import time
+
 import pyttsx3
 
 import speech_recognition as sr
@@ -24,12 +26,13 @@ voices =engine.getProperty('voices')
 engine.setProperty('voice',voices[-1].id)
 
 def speak(audio):
+    print(audio)
     engine.say(audio)
     engine.runAndWait()
 
 def wishme(): #will greet you according to time of the day
     hour = int(datetime.datetime.now().hour)
-    speak("hello sir .")    
+    speak("hello sir ")    
     if hour>=0 and hour<12:         # if time is between 0 to 12 in the morning
         speak("Good Morning!")
 
@@ -71,6 +74,7 @@ def sendEmail(to,content):
 if __name__ == "__main__":
   # speak("Hello Boss")
     wishme()
+    print('type help for queris')
     # query=str(input( "enter query"))#to manualy enter query
     while True:#In below code say somthing what do you want to open or get activity from friday and say stop to end process
         query=str(input( "enter query: "))#to manualy enter query
@@ -121,9 +125,10 @@ if __name__ == "__main__":
 
         elif 'time' in query:
                 strtime= datetime.datetime.now().strftime("%H:%M:%S")
-                print(strtime)
+                # print(strtime)
                 speak(f"The time is {strtime}")
-                print(f"The time is {strtime}")
+                # time.sleep(2)
+                # print(f"The time is {strtime}")
 
         # elif 'email' in query:
         #         try:
@@ -136,7 +141,18 @@ if __name__ == "__main__":
         #             print(e)
         #             speak("sorry boss, i am not able to send email")
         elif 'youtube' in query:
-                   webbrowser.open('https://youtu.be/iik25wqIuFo')
+                speak('starting')
+                time.sleep(3)
+                webbrowser.open('https://youtu.be/iik25wqIuFo')
+
+        elif 'help' in query:
+            speak('here are some query you can use')
+            print('''
+                who are you : for the intoduction of AI
+                youtube : to start youtube in web browser
+                time : to check current time 
+                wikipedia <topic to search from wiki>: to search wikipedia
+                quit : to terminate program''')
 
         # elif 'file' in query:
         #         v='C:\\'
@@ -148,8 +164,12 @@ if __name__ == "__main__":
 
         elif 'quit' in query:
             speak('have a great day')
-            # print('have a great day')
+            # time.sleep(2)
+            # print('***have a great day***')
             break;
+
+        else:
+            speak("please give appropriate query")
                 
                           
    
