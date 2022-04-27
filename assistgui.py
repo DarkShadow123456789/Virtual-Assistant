@@ -94,12 +94,7 @@ def exe(query):
 
     elif 'help' in query:
             speak('here are some query you can use')
-            dis_text('''who are you : for the intoduction of AI \nyoutube : to start youtube in web browser \ntime : to check current time \nwikipedia : to search wikipedia \nquit : to terminate program''')
-            # te= # tex=t.Text(root,height=14,width=60)
-            # tex.insert(1.0,te)
-            # tex.tag_configure('center',justify='center')
-            # tex.tag_add('center',1.0,'end')
-            # tex.grid(columnspan=6,row=0)     
+            dis_text('''who are you : for the intoduction of AI \nyoutube : to start youtube in web browser \ntime : to check current time \nwikipedia : to search wikipedia \nquit : to terminate program''')  
 
     elif'who are you' in query:
                 speak('I am veronica, i am A.i system of created by self,with love of you, i m a ho,such a disspointment to this dammed world') 
@@ -107,7 +102,6 @@ def exe(query):
 
     elif 'quit' in query:
         speak('have a great day')
-        
         
 
     else:

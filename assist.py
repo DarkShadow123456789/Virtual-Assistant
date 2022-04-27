@@ -77,8 +77,8 @@ if __name__ == "__main__":
     print('type help for queris')
     # query=str(input( "enter query"))#to manualy enter query
     while True:#In below code say somthing what do you want to open or get activity from friday and say stop to end process
-        query=str(input( "enter query: "))#to manualy enter query
-        # query =listen().lower()#to enter query with speach
+#        query=str(input( "enter query: "))#to manualy enter query
+        query =listen().lower()#to enter query with speach
         if 'wikipedia' in query:
                 try:
                     speak('searching Wikipedia....')
